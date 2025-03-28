@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import SampleData
-
+from .models import Note
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,19 +13,10 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
-class SampleDataSerializer(serializers.ModelSerializer):
 
+
+class NoteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SampleData
-        fields = ['id',
-                  'feature1',
-                  'feature2',
-                  'feature3',
-                  'feature4',
-                  'feature4',
-                  'feature5',
-                  'feature6',
-                  'feature7',
-                  'feature8',
-                  'feature9',
-                  'feature10']
+        model = Note
+        fields = ['id', 'author', 'message', 'created_at']
+        extra_kwargs = {'author': {'read_only': True}}

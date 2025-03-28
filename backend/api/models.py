@@ -1,17 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+class Note(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notes")
+    message = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
 
-class SampleData(models.Model):
-    feature1 = models.CharField(max_length=100, default='sampleData')
-    feature2 = models.CharField(max_length=100, default='sampleData')
-    feature3 = models.CharField(max_length=100, default='sampleData')
-    feature4 = models.CharField(max_length=100, default='sampleData')
-    feature5 = models.CharField(max_length=100, default='sampleData')
-    feature6 = models.CharField(max_length=100, default='sampleData')
-    feature7 = models.CharField(max_length=100, default='sampleData')
-    feature8 = models.CharField(max_length=100, default='sampleData')
-    feature9 = models.CharField(max_length=100, default='sampleData')
-    feature10 = models.CharField(max_length=100, default='sampleData')
+    def __str__(self):
+        return self.message
+
 
 
